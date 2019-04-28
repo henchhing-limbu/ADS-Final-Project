@@ -30,9 +30,14 @@ aus_test_df <- df[,1:6][-c(1,2),]
 colnames(aus_test_df) <- c("Names", "Matches", "Runs", "Bat Avg", "Wkts", "Bowl Avg")
 rownames(aus_test_df) <- 1:nrow(aus_test_df)
 aus_test_df[,2:6] <- sapply(aus_test_df[, 2:6], as.numeric)
+# Cretaing new columns wickets per game
+aus_test_df <- aus_test_df %>% mutate(`Wkts per game`=`Wkts`/`Matches`)
 summary(aus_test_df)
 
+# Matches vs Batting Average
 ggplot(na.omit(aus_test_df), aes(x=Matches, y=`Bat Avg`)) + geom_point()
+# Histogram of Wickets per game
+ggplot(na.omit(aus_test_df), aes(x=`Wkts per game`)) + geom_histogram(color='black', fill='white')
 
 # india data
 nodes <- read_html(ind_url) %>% html_nodes(xpath='//*[@class="TableLined"]')
@@ -44,9 +49,13 @@ ind_test_df <- ind_test_df[-c(1,2),]
 colnames(ind_test_df) <- c("Names", "Matches", "Runs", "Bat Avg", "Wkts", "Bowl Avg")
 row.names(ind_test_df) <- 1:nrow(ind_test_df)
 ind_test_df[,2:6] <- sapply(ind_test_df[, 2:6], as.numeric)
+# Cretaing new columns wickets per game
+ind_test_df <- ind_test_df %>% mutate(`Wkts per game`=`Wkts`/`Matches`)
 summary(ind_test_df)
 
+# Matches vs Batting Average
 ggplot(na.omit(ind_test_df), aes(x=Matches, y=`Bat Avg`)) + geom_point()
+ggplot(na.omit(ind_test_df), aes(x=`Wkts per game`)) + geom_histogram(color='black', fill='white')
 
 # south africa data
 nodes <- read_html(sfa_url) %>% html_nodes(xpath='//*[@class="TableLined"]')
@@ -58,9 +67,12 @@ sfa_test_df <- sfa_test_df[-c(1,2),]
 colnames(sfa_test_df) <- c("Names", "Matches", "Runs", "Bat Avg", "Wkts", "Bowl Avg")
 row.names(sfa_test_df) <- 1:nrow(sfa_test_df)
 sfa_test_df[,2:6] <- sapply(sfa_test_df[, 2:6], as.numeric)
+# Cretaing new columns wickets per game
+sfa_test_df <- sfa_test_df %>% mutate(`Wkts per game`=`Wkts`/`Matches`)
 summary(sfa_test_df)
 
 ggplot(na.omit(sfa_test_df), aes(x=Matches, y=`Bat Avg`)) + geom_point()
+ggplot(na.omit(sfa_test_df), aes(x=`Wkts per game`)) + geom_histogram(color='black', fill='white')
 
 # england data
 nodes <- read_html(eng_url) %>% html_nodes(xpath='//*[@class="TableLined"]')
@@ -72,9 +84,12 @@ eng_test_df <- eng_test_df[-c(1,2),]
 colnames(eng_test_df) <- c("Names", "Matches", "Runs", "Bat Avg", "Wkts", "Bowl Avg")
 row.names(eng_test_df) <- 1:nrow(eng_test_df)
 eng_test_df[,2:6] <- sapply(eng_test_df[, 2:6], as.numeric)
+# Cretaing new columns wickets per game
+eng_test_df <- eng_test_df %>% mutate(`Wkts per game`=`Wkts`/`Matches`)
 summary(eng_test_df)
 
 ggplot(na.omit(eng_test_df), aes(x=Matches, y=`Bat Avg`)) + geom_point()
+ggplot(na.omit(eng_test_df), aes(x=`Wkts per game`)) + geom_histogram(color='black', fill='white')
 
 # west indies data
 nodes <- read_html(win_url) %>% html_nodes(xpath='//*[@class="TableLined"]')
@@ -86,9 +101,12 @@ win_test_df <- win_test_df[-c(1,2),]
 colnames(win_test_df) <- c("Names", "Matches", "Runs", "Bat Avg", "Wkts", "Bowl Avg")
 row.names(win_test_df) <- 1:nrow(win_test_df)
 win_test_df[,2:6] <- sapply(win_test_df[, 2:6], as.numeric)
+# Cretaing new columns wickets per game
+win_test_df <- win_test_df %>% mutate(`Wkts per game`=`Wkts`/`Matches`)
 summary(win_test_df)
 
 ggplot(na.omit(win_test_df), aes(x=Matches, y=`Bat Avg`)) + geom_point()
+ggplot(na.omit(win_test_df), aes(x=`Wkts per game`)) + geom_histogram(color='black', fill='white')
 
 # pakistan data
 nodes <- read_html(pak_url) %>% html_nodes(xpath='//*[@class="TableLined"]')
@@ -100,9 +118,12 @@ pak_test_df <- pak_test_df[-c(1,2),]
 colnames(pak_test_df) <- c("Names", "Matches", "Runs", "Bat Avg", "Wkts", "Bowl Avg")
 row.names(pak_test_df) <- 1:nrow(pak_test_df)
 pak_test_df[,2:6] <- sapply(pak_test_df[, 2:6], as.numeric)
+# Cretaing new columns wickets per game
+pak_test_df <- pak_test_df %>% mutate(`Wkts per game`=`Wkts`/`Matches`)
 summary(pak_test_df)
 
 ggplot(na.omit(pak_test_df), aes(x=Matches, y=`Bat Avg`)) + geom_point()
+ggplot(na.omit(pak_test_df), aes(x=`Wkts per game`)) + geom_histogram(color='black', fill='white')
 
 # New Zealand data
 nodes <- read_html(nzl_url) %>% html_nodes(xpath='//*[@class="TableLined"]')
@@ -114,9 +135,12 @@ nzl_test_df <- nzl_test_df[-c(1,2),]
 colnames(nzl_test_df) <- c("Names", "Matches", "Runs", "Bat Avg", "Wkts", "Bowl Avg")
 row.names(nzl_test_df) <- 1:nrow(nzl_test_df)
 nzl_test_df[,2:6] <- sapply(nzl_test_df[, 2:6], as.numeric)
+# Cretaing new columns wickets per game
+nzl_test_df <- nzl_test_df %>% mutate(`Wkts per game`=`Wkts`/`Matches`)
 summary(nzl_test_df)
 
 ggplot(na.omit(nzl_test_df), aes(x=Matches, y=`Bat Avg`)) + geom_point()
+ggplot(na.omit(nzl_test_df), aes(x=`Wkts per game`)) + geom_histogram(color='black', fill='white')
 
 # Sri Lanka data
 nodes <- read_html(srl_url) %>% html_nodes(xpath='//*[@class="TableLined"]')
@@ -124,11 +148,41 @@ df <- html_table(nodes,header=NA,fill=TRUE) [[1]]
 df[df=="" | df=="0" | df=="0.00"]<-NA
 
 srl_test_df <- df[,1:6]
-srl_test_df <- pak_test_df[-c(1,2),]
+srl_test_df <- srl_test_df[-c(1,2),]
 colnames(srl_test_df) <- c("Names", "Matches", "Runs", "Bat Avg", "Wkts", "Bowl Avg")
 row.names(srl_test_df) <- 1:nrow(srl_test_df)
 srl_test_df[,2:6] <- sapply(srl_test_df[, 2:6], as.numeric)
+# Cretaing new columns wickets per game
+srl_test_df <- srl_test_df %>% mutate(`Wkts per game`=`Wkts`/`Matches`)
 summary(srl_test_df)
 
 ggplot(na.omit(srl_test_df), aes(x=Matches, y=`Bat Avg`)) + geom_point()
+ggplot(na.omit(srl_test_df), aes(x=`Wkts per game`)) + geom_histogram(color='black', fill='white')
+
+# Combining dataframes
+combined_df <- rbind(aus_test_df, ind_test_df, sfa_test_df, pak_test_df, eng_test_df, win_test_df, 
+                     srl_test_df, nzl_test_df)
+summary(combined_df)
+# Batting Average vs Matches
+ggplot(na.omit(combined_df), aes(x=Matches, y =`Bat Avg`)) + geom_point()
+
+# Bowling Average vs Matches
+ggplot(na.omit(combined_df), aes(x=Matches, y=`Bowl Avg`)) + geom_point()
+
+# Bowling Average for Pakistan
+ggplot(na.omit(pak_test_df), aes(x=Matches, y=`Bowl Avg`)) + geom_point()
+
+# Batting Average Overall Histogram
+ggplot(na.omit(combined_df), aes(x=`Bat Avg`)) + geom_histogram(color='black', fill='white', binwidth=1)
+
+# Wickets Overall Histogram
+ggplot(na.omit(combined_df), aes(x=`Wkts`)) + geom_histogram(color='black', fill='white', binwidth=10)
+
+# Creating a new column wkts per game
+combined_df <- combined_df %>% mutate(`Wkts per game`=`Wkts`/`Matches`)
+
+summary(combined_df)
+
+# Wickets per game Overall Histogram
+ggplot(na.omit(combined_df), aes(x=`Wkts per game`)) + geom_histogram(color='black', fill='white') 
 
