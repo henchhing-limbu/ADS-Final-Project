@@ -122,8 +122,6 @@ combined_df <- rbind(aus_test_df, ind_test_df, saf_test_df, pak_test_df, eng_tes
 # Creating a new column wkts per game
 combined_df <- combined_df %>% mutate(`Wkts per game`=`Wkts`/`Matches`)
 
-
-
 # SUMMRAIES
 # Overall
 summary(combined_df)
