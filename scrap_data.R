@@ -212,17 +212,48 @@ ggplot(na.omit(combined_df), aes(x=`Wkts`)) + geom_histogram(color='black', fill
 # NULL HYPOTHESISES
 # Mean Batting Avg = 18.
 combined_bat_avg <- unlist(na.omit(combined_df[, "Bat Avg"]))
-bat_avg_sample <- sample(combined_bat_avg, 200, replace=TRUE) %>% data.frame(`BatAvg`=.)
-ggplot(bat_avg_sample, aes(x=`BatAvg`)) + geom_histogram()
+# bat_avg_sample <- sample(combined_bat_avg, 200, replace=TRUE) %>% data.frame(`BatAvg`=.)
+ggplot(bat_avg_sample, aes(x=`BatAvg`)) + geom_histogram(color='black', fill='white')
+# saveRDS(bat_avg_sample, file = "bat_avg.rds")
+# readRDS(file = "bat_avg.rds")
 
-# Mean Bowling Avg = 28.
+# Mean Bowling Avg = 32.
 combined_bowl_avg <- unlist(na.omit(combined_df[, "Bowl Avg"]))
-bowl_avg_sample <- sample(combined_bowl_avg, 200, replace=TRUE) %>% data.frame(`BowlAvg`=.)
-ggplot(bowl_avg_sample, aes(x=`BowlAvg`)) + geom_histogram()
+# bowl_avg_sample <- sample(combined_bowl_avg, 200, replace=TRUE) %>% data.frame(`BowlAvg`=.)
+ggplot(bowl_avg_sample, aes(x=`BowlAvg`)) + geom_histogram(color='black', fill='white')
+# saveRDS(bowl_avg_sample, file = "bowl_avg.rds")
+# readRDS(file = "bowl_avg.rds")
 
-# Mean Wkts = 2.
-combined_wkts <- unlist(na.omit(combined_df[, "Wkts"]))
-wkts_sample <- sample(combined_wkts, 200, replace=TRUE) %>% data.frame(`Wkts`=.)
-ggplot(wkts_sample, aes(x=`Wkts`)) + geom_histogram()
+# Mean Wkts per Game = 2.
+combined_wkts_per_game <- unlist(na.omit(combined_df[, "Wkts per game"]))
+# wkts_per_game_sample <- sample(combined_wkts_per_game, 200, replace=TRUE) %>% data.frame(`WktsPerGame`=.)
+ggplot(wkts_per_game_sample, aes(x=`WktsPerGame`)) + geom_histogram(color='black', fill='white')
+# saveRDS(wkts_per_game_sample, file = "wkts.rds")
+# readRDS(file = "bowl_avg.rds")
 
+# Computing Sample Means
+n <- 200
+mean_bat_avg_hat <- sum(bat_avg_sample[, "BatAvg"]) / n
+mean_bowl_avg_hat <- sum(bowl_avg_sample[, "BowlAvg"]) / n
+mean_wkts_per_game_hat <- sum(wkts_per_game_sample[, "WktsPerGame"]) / n
+
+# Computing 95% Confidence Intervals
+# Z Value
+z_value <- qnorm((1-0.95)/2)
+
+# Standard Deviations
+mean_bat_avg_sd <- sd(bat_avg_sample[, "BatAvg"])
+mean_bowl_avg_sd <- sd(bowl_avg_sample[, "BowlAvg"])
+mean_wkts_per_game_sd <- sd(wkts_per_game_sample[, "WktsPerGame"])
+
+# Confidence Intervals
+mean_bat_avg_cf_95 <- mean_bat_avg_hat + c(1, -1) * (z_value * mean_bat_avg_sd / sqrt(n))
+mean_bowl_avg_cf_95 <- mean_bowl_avg_hat + c(1, -1) * (z_value * mean_bowl_avg_sd / sqrt(n))
+mean_wkts_per_game_cf_95 <- mean_wkts_per_game_hat + c(1, -1) * (z_value * mean_wkts_per_game_sd / sqrt(n))
+print("Mean Bat Avg 95 CF: ")
+print(mean_bat_avg_cf_95)
+print("Mean Bowl Avg 95 CF: ")
+print(mean_bowl_avg_cf_95)
+print("Mean Wickets per Game 95 CF: ")
+print(mean_wkts_per_game_cf_95)
 
