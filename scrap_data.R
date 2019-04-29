@@ -209,30 +209,20 @@ ggplot(na.omit(combined_df), aes(x=`Bat Avg`)) + geom_histogram(color='black', f
 ggplot(na.omit(combined_df), aes(x=`Bowl Avg`)) + geom_histogram(color='black', fill='white')
 ggplot(na.omit(combined_df), aes(x=`Wkts`)) + geom_histogram(color='black', fill='white')
 
-# NULL HYPOTHESIS
-# Mean Batting Avg = 50.
-combined_bat_avg <- na.omit(select(combined_df, `Bat Avg`))
-combined_bat_avg <- as.vector(combined_bat_avg)
-print(combined_bat_avg)
-a <- sample(combined_bat_avg, 50, replace=TRUE)
-print(a)
+# NULL HYPOTHESISES
+# Mean Batting Avg = 18.
+combined_bat_avg <- unlist(na.omit(combined_df[, "Bat Avg"]))
+bat_avg_sample <- sample(combined_bat_avg, 200, replace=TRUE) %>% data.frame(`BatAvg`=.)
+ggplot(bat_avg_sample, aes(x=`BatAvg`)) + geom_histogram()
 
+# Mean Bowling Avg = 28.
+combined_bowl_avg <- unlist(na.omit(combined_df[, "Bowl Avg"]))
+bowl_avg_sample <- sample(combined_bowl_avg, 200, replace=TRUE) %>% data.frame(`BowlAvg`=.)
+ggplot(bowl_avg_sample, aes(x=`BowlAvg`)) + geom_histogram()
 
-
-a <- data.frame(`Bat Avg`=a)
-print(a)
-ggplot(a, aes(x='Bat Avg')) + geom_histogram(color='black', fill='white')
-
-# Mean Bowling Avg = 50.
-combined_bowl_avg <- na.omit(combined_df[,'Bowl Avg'])
-b <- sample(combined_bowl_avg, 50, replace=TRUE) %>%
-  matrix(., nrow=length(.), dimnames=list(NULL, c('Bowl Avg')))
-print(b)
-
-# Mean Wkts = 50.
-combined_wkt <- na.omit(combined_df[,'Wkts'])
-c <- sample(combined_wkt, 2, replace=TRUE) %>%
-  matrix(., nrow=length(.), dimnames=list(NULL, c('Bowl Avg')))
-print(c)
+# Mean Wkts = 2.
+combined_wkts <- unlist(na.omit(combined_df[, "Wkts"]))
+wkts_sample <- sample(combined_wkts, 200, replace=TRUE) %>% data.frame(`Wkts`=.)
+ggplot(wkts_sample, aes(x=`Wkts`)) + geom_histogram()
 
 
