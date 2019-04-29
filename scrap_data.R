@@ -132,7 +132,7 @@ summary(aus_test_df)
 # India
 summary(ind_test_df)
 # South Africa
-summary(aus_test_df)
+summary(saf_test_df)
 # England
 summary(eng_test_df)
 # West Indies
@@ -203,4 +203,36 @@ ggplot(na.omit(pak_test_df), aes(x=`Wkts per game`)) + geom_histogram(color='bla
 ggplot(na.omit(nzl_test_df), aes(x=`Wkts per game`)) + geom_histogram(color='black', fill='white') + xlim(0, 7) + ylim(0, 35)
 # Sri Lanka
 ggplot(na.omit(srl_test_df), aes(x=`Wkts per game`)) + geom_histogram(color='black', fill='white') + xlim(0, 7) + ylim(0, 35)
+
+# Histograms for overall
+ggplot(na.omit(combined_df), aes(x=`Bat Avg`)) + geom_histogram(color='black', fill='white')
+ggplot(na.omit(combined_df), aes(x=`Bowl Avg`)) + geom_histogram(color='black', fill='white')
+ggplot(na.omit(combined_df), aes(x=`Wkts`)) + geom_histogram(color='black', fill='white')
+
+# NULL HYPOTHESIS
+# Mean Batting Avg = 50.
+combined_bat_avg <- na.omit(select(combined_df, `Bat Avg`))
+combined_bat_avg <- as.vector(combined_bat_avg)
+print(combined_bat_avg)
+a <- sample(combined_bat_avg, 50, replace=TRUE)
+print(a)
+
+
+
+a <- data.frame(`Bat Avg`=a)
+print(a)
+ggplot(a, aes(x='Bat Avg')) + geom_histogram(color='black', fill='white')
+
+# Mean Bowling Avg = 50.
+combined_bowl_avg <- na.omit(combined_df[,'Bowl Avg'])
+b <- sample(combined_bowl_avg, 50, replace=TRUE) %>%
+  matrix(., nrow=length(.), dimnames=list(NULL, c('Bowl Avg')))
+print(b)
+
+# Mean Wkts = 50.
+combined_wkt <- na.omit(combined_df[,'Wkts'])
+c <- sample(combined_wkt, 2, replace=TRUE) %>%
+  matrix(., nrow=length(.), dimnames=list(NULL, c('Bowl Avg')))
+print(c)
+
 
