@@ -207,29 +207,30 @@ ggplot(na.omit(srl_test_df), aes(x=`Wkts per game`)) + geom_histogram(color='bla
 # Histograms for overall
 ggplot(na.omit(combined_df), aes(x=`Bat Avg`)) + geom_histogram(color='black', fill='white')
 ggplot(na.omit(combined_df), aes(x=`Bowl Avg`)) + geom_histogram(color='black', fill='white')
-ggplot(na.omit(combined_df), aes(x=`Wkts`)) + geom_histogram(color='black', fill='white')
+ggplot(na.omit(combined_df), aes(x=`Wkts per game`)) + geom_histogram(color='black', fill='white')
 
 # NULL HYPOTHESISES
 # Mean Batting Avg = 18.
 combined_bat_avg <- unlist(na.omit(combined_df[, "Bat Avg"]))
 # bat_avg_sample <- sample(combined_bat_avg, 200, replace=TRUE) %>% data.frame(`BatAvg`=.)
+# bat_avg_sample <- readRDS(file = "./ADS-Final-Project/saved_sample_vars/bat_avg.rds")
 ggplot(bat_avg_sample, aes(x=`BatAvg`)) + geom_histogram(color='black', fill='white')
 # saveRDS(bat_avg_sample, file = "bat_avg.rds")
-# readRDS(file = "bat_avg.rds")
 
 # Mean Bowling Avg = 32.
 combined_bowl_avg <- unlist(na.omit(combined_df[, "Bowl Avg"]))
 # bowl_avg_sample <- sample(combined_bowl_avg, 200, replace=TRUE) %>% data.frame(`BowlAvg`=.)
+# bowl_avg_sample <- readRDS(file = "./ADS-Final-Project/saved_sample_vars/bowl_avg.rds")
 ggplot(bowl_avg_sample, aes(x=`BowlAvg`)) + geom_histogram(color='black', fill='white')
 # saveRDS(bowl_avg_sample, file = "bowl_avg.rds")
-# readRDS(file = "bowl_avg.rds")
 
 # Mean Wkts per Game = 2.
 combined_wkts_per_game <- unlist(na.omit(combined_df[, "Wkts per game"]))
 # wkts_per_game_sample <- sample(combined_wkts_per_game, 200, replace=TRUE) %>% data.frame(`WktsPerGame`=.)
+# wkts_per_game_sample <- readRDS(file = "./ADS-Final-Project/saved_sample_vars/wkts.rds")
 ggplot(wkts_per_game_sample, aes(x=`WktsPerGame`)) + geom_histogram(color='black', fill='white')
 # saveRDS(wkts_per_game_sample, file = "wkts.rds")
-# readRDS(file = "bowl_avg.rds")
+
 
 # Computing Sample Means
 n <- 200
